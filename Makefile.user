@@ -1,0 +1,12 @@
+# Makefile for user space application
+
+CC = gcc
+CFLAGS = -Wall
+
+all: user_program
+
+user_program: user_program.c
+        $(CC) $(CFLAGS) -o user_program user_program.c
+
+clean:
+        rm -f user_program
