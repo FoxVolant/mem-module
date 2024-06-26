@@ -104,13 +104,15 @@ static int __init my_module_init(void) {
     if (!sys_call_table)
         return -1;
 
-    cr0 = disable_write_protection();
+
 
     // 替换三个系统调用
     original_syscall_allocate = (void *)sys_call_table[MY_SYSCALL_NUM_ALLOCATE];
     original_syscall_store = (void *)sys_call_table[MY_SYSCALL_NUM_STORE];
     original_syscall_load = (void *)sys_call_table[MY_SYSCALL_NUM_LOAD];
 
+    cr0 = disable_write_protection();
+    
     sys_call_table[MY_SYSCALL_NUM_ALLOCATE] = (unsigned long *)sys_mycall_allocate;
     sys_call_table[MY_SYSCALL_NUM_STORE] = (unsigned long *)sys_mycall_store;
     sys_call_table[MY_SYSCALL_NUM_LOAD] = (unsigned long *)sys_mycall_load;
