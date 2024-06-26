@@ -5,9 +5,6 @@
 #include <linux/uaccess.h>
 #include <linux/slab.h>
 
-MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Linux Kernel Engineer");
-
 unsigned long **sys_call_table;
 
 asmlinkage long (*original_syscall)(void);
@@ -127,3 +124,4 @@ static void __exit my_module_exit(void) {
 
 module_init(my_module_init);
 module_exit(my_module_exit);
+MODULE_LICENSE("GPL");
